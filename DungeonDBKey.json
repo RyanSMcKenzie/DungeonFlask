@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "dungeonflaskdb",
+  "private_key_id": "aeb0d3020a85f746d456acb84c9eb1e0b61ebf72",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCqajYKlP7jeX+h\n+8ZJCskLTN8rDadjBIGY+n6j+eNy7k8YRHxCA06CdRkb2qFcTmNRqvU4ABrgCuT3\npbUM6UosjjDvY4XSfhakcsm6wfOJ2okXcQ7c1/B839Ga7UsBHBMUjRX/VlV5aZAi\noXMtBz0Y6OL7zC5TniuusHcQNBlDWipVheL/l6RUofy5Ia/UzBPLfbLZF1fMRvGu\nomMeonYbunul/2MnPdQbs96y4s2vMDEHL8NdCUZTDvLU1iek9Zc5BkZNzi8dKs91\nq/hyKP/kpidJ1Mfhu0M2lAyxAPE+Z/6bCZjAhRfYjTnNEwsbh7/N+LIs2Jq/Drm5\nL4G+p9uJAgMBAAECggEAL6TLIBFA47L7untMF+6yf3zJ5d0G37mKTA04a7q42tCC\nf3viK4iGIhX/45gvxcFKpjIAJdxtpxaUpiIHaKkuah+E0eDGsK88wFQxTwvbfT6C\nVnHu4FJk81yV2tUdw50oPnYlYMIv2mZnfC8cJsofzD+L+i6/AvS1LL08RGT0bS4q\nCXRKngFzlS0Q0FRm/w2Qzuo+k/qK0u59B/I1hpbXomIATqNtOPt3kXxG02BEoae8\nXEeKEhIJSx8FI8hbHV3HfeAx71/WRXRIrVS+MiPCCb9KpFROPFOGaYG2PRLJSljL\nAsybotWaXZuUnQspli8ssF8HaNF1WW2Ofy7q1VxD6wKBgQDrU2SinTqOwLr+7B33\nnkmvvKPbG5WE0vF06gXN0atTAroHpRTTuLh7qwZ4qwXsLOaavlzcasgW8ZB53Col\ng2Xpx5EESc/v7e9k0k1cGpMQQz04x3LcKtV0X/h6WKkMfTjCYedFfgombsDrTsxO\n5Xn/o/ureOiWid3oB0RV8+o42wKBgQC5Yu/BTHnGOsYGXfhLAl2I8a8TKqWaFnfL\nvrutlGJx8eR+I2N9K/aPGxg8vdwAJLSgIKDLRgArNUEwLHAVlXdwMfsqyU6x51T7\nuH8Gbq6PHNN0dpAhw0tKGtoHkoBA1201permTsPjMaVSauoV9GrG+04koDYKjXdn\n+vU5PjXIawKBgCz6PWvPPVf3gkYi/v9K466REYhZV1SRtNCxwfY6stIk3UWEydxF\nnA0W/R+nIHSpiFHfPIRsbF3mQcToza1p1dq+5/q32OR0x6Kvh1WpRp5/G350sIFg\nNngNt8I6m+TlMioE6F0h3/LEjF7tKqORvKWdxAZcD6hmJWGpsefzvLqtAoGAKqhB\nUtEuFBbiCgUFZP0eWKyEBH0DrfkNh6xTsxU5sc5fLUcnVV4QVc1+PjvRq5bGmTHo\nzd1FnKucXGFdSRojaYWWrbm0iesY+vLxB6HgOL4BSgMeFybA5ERZdvSW3lSzpGyR\nKH1nRZfe2qAPTQ34o+Cfkn3q8XKrzxlH4+wUpBECgYALFytISgOt9yRGH2wd5iss\noZfaEV2AOqH7Fg9cGg7S+6879S8qzPszuZ579pmxBaBnMf3Jv/uNQLHoHXSZvqRu\nAr23OD3MxWexD4gYyzMI7o6ZLdgXEwM1R+RmNN/VgCQYcMFisUs2ZvtIoinzQh2E\nXw6OuxYF6jsb7K54dJq8FQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-4gh6g@dungeonflaskdb.iam.gserviceaccount.com",
+  "client_id": "101402384109193066551",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-4gh6g%40dungeonflaskdb.iam.gserviceaccount.com"
+}
