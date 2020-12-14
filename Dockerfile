@@ -1,7 +1,8 @@
 FROM python:alpine3.8
-COPY . /app
 WORKDIR /app
-RUN pip install -r requirements.txt
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
 EXPOSE 5500
 ENTRYPOINT [ "python3" ]
 CMD ["app.py"]
