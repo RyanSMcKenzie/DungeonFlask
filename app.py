@@ -6,6 +6,10 @@ app = Flask(__name__)
 
 #cred = credentials.Certificate('DungeonDBKey.json')
 #default_app = initialize_app(cred)
+cred = credentials.ApplicationDefault()
+default_app = initialize_app(cred, {
+  'projectId': project_id,
+})
 db = firestore.client()
 user_ref = db.collection('users')
 
