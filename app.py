@@ -4,8 +4,8 @@ from firebase_admin import credentials, firestore, initialize_app
 
 app = Flask(__name__)
 
-cred = credentials.Certificate('DungeonDBKey.json')
-default_app = initialize_app(cred)
+#cred = credentials.Certificate('DungeonDBKey.json')
+#default_app = initialize_app(cred)
 db = firestore.client()
 user_ref = db.collection('users')
 

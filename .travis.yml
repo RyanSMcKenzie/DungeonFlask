@@ -3,6 +3,9 @@ language: python
 python:
   - "3.8"
 
+env:
+  - GOOGLE_APPLICATION_CREDENTIALS=$TRAVIS_BUILD_DIR/DungeonDBKey.json
+  
 install:
   - pip install -r requirements.txt
 
