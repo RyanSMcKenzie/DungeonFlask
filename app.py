@@ -4,7 +4,7 @@ from firebase_admin import credentials, firestore, initialize_app
 import os
 
 app = Flask(__name__)
-
+app.secret_key = os.urandom(12)
 #cred = credentials.Certificate('DungeonDBKey.json')
 #default_app = initialize_app(cred)
 cred = credentials.ApplicationDefault()
@@ -42,6 +42,5 @@ def logout():
 
 port = int(os.environ.get('PORT', 8080))
 if __name__ == '__main__':
-    app.secret_key = os.urandom(12)
     # Run app
     app.run(host="0.0.0.0", port=port)
