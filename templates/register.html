@@ -10,7 +10,8 @@
         <div class="row m-5">
             <div class="col"></div>
             <div class="col p-5" style="outline-style: solid; background-color: rgb(167, 167, 167);">
-                <form action='/login' method="POST">
+                <h4>Register your account</h4>
+                <form action='/register' method="POST">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username:</label>
                         <input type="text" class="form-control border-dark" id="username" name="username">
@@ -20,22 +21,24 @@
                         <input type="password" class="form-control border-dark" id="password" name="password">
                     </div>
                     <div class="mb-3">
+                        <label for="password2" class="form-label">Verify Password:</label>
+                        <input type="password" class="form-control border-dark" id="password2" name="password2">
+                    </div>
+                    <div class="mb-3">
                         <input type="submit" value="Submit" class="border-dark">
                     </div>
                 </form>
-                <p>Don't have an account? <a href="/registration">Register</a></p>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <ul class=flashes>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
             </div>
+            
             <div class="col"></div>
         </div>
     </div>
-    
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul class=flashes>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
-</body>

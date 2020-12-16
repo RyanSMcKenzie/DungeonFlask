@@ -1,7 +1,8 @@
 import unittest
-from app import app, mainPage
+from app import app, mainPage, user_ref
 import pytest
 import os
+# Run me with python3 -m pytest -v
 
 @pytest.fixture
 def client():
@@ -22,9 +23,32 @@ def logout(client):
     return client.get('/logout', follow_redirects=True)
 
 def test_test(client):
+    # Tests logging a user in
     with app.test_request_context('/login', 
     data={"username":app.config["username"], 
     "password":app.config["password"]}):
         assert login(client, app.config["username"], 
         app.config["password"]).data.decode('utf-8') == "Hi admin"
         logout(client)
+
+def register(client, username, password, password2):
+    return client.post('/register', data=dict(
+        username=username,
+        password=password,
+        password2=password2
+    ), follow_redirects=True)
+
+def test_register(client):
+    # Tests registering a new account - add and delete account
+    with app.test_request_context('/register', 
+    data={"username":"Bilbo", 
+    "password":"Billpass",
+    "password2":"Billpass"}):
+        register(client, "Bilbo", "Billpass", "Billpass")
+        assert user_ref.where('username', 
+        '==', "Bilbo").get() != []
+        assert user_ref.where('username', 
+        '==', "Bilbo").get()[0].get('username') == "Bilbo"
+        del_id = user_ref.where('username', '==', 'Bilbo').get()[0].id
+        user_ref.document(del_id).delete()
+        assert user_ref.where('username', '==', "Bilbo").get() == []
