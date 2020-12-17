@@ -18,6 +18,8 @@ def login(client, username, password):
         password=password
     ), follow_redirects=True)
 
+def sessionData(client):
+    return client.get('/test-session')
 
 def logout(client):
     return client.get('/logout', follow_redirects=True)
@@ -27,9 +29,10 @@ def test_test(client):
     with app.test_request_context('/login', 
     data={"username":app.config["username"], 
     "password":app.config["password"]}):
-        assert login(client, app.config["username"], 
-        app.config["password"]).data.decode('utf-8') == "Hi admin"
+        login(client, app.config["username"], app.config["password"])
+        assert sessionData(client).data.decode('utf-8') == 'admin'
         logout(client)
+        assert sessionData(client).data.decode('utf-8') == 'No user'
 
 def register(client, username, password, password2):
     return client.post('/register', data=dict(

@@ -3,10 +3,9 @@ from flask import request, jsonify, url_for
 from firebase_admin import credentials, firestore, initialize_app
 import os
 
+# LINK TO LIVE: https://dungeon-flask-nvxsto2xda-uc.a.run.app
 app = Flask(__name__)
 app.secret_key = os.urandom(12)
-#cred = credentials.Certificate('DungeonDBKey.json')
-#default_app = initialize_app(cred)
 cred = credentials.ApplicationDefault()
 default_app = initialize_app(cred)
 db = firestore.client()
@@ -17,7 +16,7 @@ def mainPage():
     if not session.get('logged_in'):
         return render_template('index.html')
 
-    return f"Hi {session['user']}"
+    return render_template('user_page.html')
 
 
 @app.route('/login', methods=['POST'])
@@ -63,6 +62,12 @@ def register():
 @app.route('/registration')
 def reg_page():
     return render_template('register.html')
+
+@app.route('/test-session')
+def sessionData():
+    if 'user' not in session:
+        return "No user"
+    return session['user']
 
 port = int(os.environ.get('PORT', 8080))
 if __name__ == '__main__':
