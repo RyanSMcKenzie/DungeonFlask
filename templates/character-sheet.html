@@ -26,6 +26,7 @@
     </nav>
     <form class="mt-3">
         <div class="container">
+            <h5 class="text-center">Personal</h5>
             <div class="row mb-5">
                 <div class="col">
                     <div class="form-floating border-bottom border-dark">
@@ -59,12 +60,144 @@
                 </div>
             </div>
             <div class="row border-bottom border-dark mt-5 pt-5"></div>
+            <h5 class="text-center mt-2">Attributes</h5>
             <div class="row mt-5">
                 {% for val in ["STR", "DEX", "CON", "INT", "WIS", "CHA"] %}
                 <div class="col">
                     <div class="form-floating border-bottom border-dark">
                         <input type="number" class="form-control" id="char_{{val}}" min=1 max=30 style="background: none;">
                         <label for="char_{{val}}">{{val}}</label>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="row border-bottom border-dark mt-5 pt-5"></div>
+            <h5 class="text-center mt-2">Combat</h5>
+            <div class="row mt-5">
+                <div class="col">
+                    <div class="form-floating border-bottom border-dark">
+                        <input type="number" class="form-control" id="curr_hp" style="background: none;">
+                        <label for="armor_class">Current HP</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating border-bottom border-dark">
+                        <input type="number" class="form-control" id="max_hp" style="background: none;">
+                        <label for="armor_class">Maximum HP</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating border-bottom border-dark">
+                        <input type="number" class="form-control" id="armor_class" style="background: none;">
+                        <label for="armor_class">Armor Class</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating border-bottom border-dark">
+                        <input type="number" class="form-control" id="speed" style="background: none;">
+                        <label for="armor_class">Speed</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating border-bottom border-dark">
+                        <input type="number" class="form-control" id="initiative" style="background: none;">
+                        <label for="armor_class">Initiative</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <p class="mt-4">Weapon</p>
+                <div class="col">
+                    <div class="form-floating border-bottom border-dark">
+                        <input type="text" class="form-control" id="weapon_name" style="background: none;">
+                        <label for="armor_class">Name</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating border-bottom border-dark">
+                        <input type="text" class="form-control" id="atk_bonus" style="background: none;">
+                        <label for="armor_class">Attack Bonus</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-floating border-bottom border-dark">
+                        <input type="text" class="form-control" id="Damage" style="background: none;">
+                        <label for="armor_class">Damage</label>
+                    </div>
+                </div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div class="row border-bottom border-dark mt-5 pt-5"></div>
+            <h5 class="text-center mt-2">Saves</h5>
+            <div class="row mt-5">
+                {% for val in ["STR", "DEX", "CON", "INT", "WIS", "CHA"] %}
+                <div class="col">
+                    <div class="form-floating border-bottom border-dark">
+                        <input type="number" class="form-control" id="char_{{val}}" min=1 max=30 style="background: none;">
+                        <label for="char_{{val}}">{{val}}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="prof_{{val}}">
+                        <label for="prof_{{val}}" style="opacity: 0.5; font-size: 0.75em;">Proficient?</label>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="row border-bottom border-dark mt-5 pt-5"></div>
+            <h5 class="text-center mt-2">Skills</h5>
+            <div class="row mt-5">
+                {% for val in ["Acrobatics", "Animal Handling", "Arcana", "Deception", "History"] %}
+                <div class="col">
+                    <div class="form-floating border-bottom border-dark">
+                        <input type="number" class="form-control" id="char_{{val}}" style="background: none;">
+                        <label for="char_{{val}}">{{val}}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="prof_{{val}}">
+                        <label for="prof_{{val}}" style="opacity: 0.5; font-size: 0.75em;">Proficient?</label>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="row mt-5">
+                {% for val in ["Insight", "Intimidation", "Investigation", "Medicine"] %}
+                <div class="col">
+                    <div class="form-floating border-bottom border-dark">
+                        <input type="number" class="form-control" id="char_{{val}}" style="background: none;">
+                        <label for="char_{{val}}">{{val}}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="prof_{{val}}">
+                        <label for="prof_{{val}}" style="opacity: 0.5; font-size: 0.75em;">Proficient?</label>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="row mt-5">
+                {% for val in ["Nature", "Perception", "Performance", "Persuasion"] %}
+                <div class="col">
+                    <div class="form-floating border-bottom border-dark">
+                        <input type="number" class="form-control" id="char_{{val}}" style="background: none;">
+                        <label for="char_{{val}}">{{val}}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="prof_{{val}}">
+                        <label for="prof_{{val}}" style="opacity: 0.5; font-size: 0.75em;">Proficient?</label>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="row mt-5">
+                {% for val in ["Religion", "Sleight of Hand", "Stealth", "Survival"] %}
+                <div class="col">
+                    <div class="form-floating border-bottom border-dark">
+                        <input type="number" class="form-control" id="char_{{val}}" style="background: none;">
+                        <label for="char_{{val}}">{{val}}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="prof_{{val}}">
+                        <label for="prof_{{val}}" style="opacity: 0.5; font-size: 0.75em;">Proficient?</label>
                     </div>
                 </div>
                 {% endfor %}
