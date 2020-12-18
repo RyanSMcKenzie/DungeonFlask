@@ -63,6 +63,10 @@ def register():
 def reg_page():
     return render_template('register.html')
 
+@app.route('/character-sheet')
+def char_sheet():
+    return render_template('character-sheet.html')
+    
 @app.route('/test-session')
 def sessionData():
     if 'user' not in session:
