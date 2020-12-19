@@ -19,14 +19,21 @@
     <div class="container">
         <div class="row">
             <div class="col" style="background-color: aqua;"></div>
-            <div class="col text-center m-3">
-                <button type="button" class="btn btn-dark btn-lg">New Character</button>
+            <div class="col text-center m-3 mt-4">
+                <form>
+                    <button type="submit" class="btn btn-dark btn-lg" formaction="/new-character">New Character</button>
+                </form>
             </div>
             <div class="col" style="background-color: aqua;"></div>
         </div>
-        {% for sheet in user_sheets %}
+        {% for sheet in data.user_sheets %}
         <div class="row">
-
+            <form action="/character-sheet" method="POST">
+                <input type="hidden" name="sheet" value={{sheet[0]}}>
+                <input type="submit" name="{{sheet[1]}}" value="Enter Sheet">
+                <input type="submit" formaction="/delete-character" name="DelChar" value="Delete Character">
+                <label for="{{sheet[1]}}">{{sheet[1]}}</label>
+            </form>
         </div>
         {% endfor %}
     </div>

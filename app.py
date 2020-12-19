@@ -10,13 +10,17 @@ cred = credentials.ApplicationDefault()
 default_app = initialize_app(cred)
 db = firestore.client()
 user_ref = db.collection('users')
+sheet_ref = db.collection('Sheet')
 
 @app.route('/')
 def mainPage():
     if not session.get('logged_in'):
         return render_template('index.html')
 
-    return render_template('user_page.html')
+    sheets = sheet_ref.where("userID", "==", session['userID']).stream()
+    sheets = [(sheet.id, sheet.get('char_name')) if sheet.get('char_name') != "" else (sheet.id, "**Unnamed**") for sheet in sheets]
+    data = {"user_sheets": sheets}
+    return render_template('user_page.html', data=data)
 
 
 @app.route('/login', methods=['POST'])
@@ -29,6 +33,7 @@ def login():
     elif request.form["password"] == username[0].get("password"):
         session['user'] = request.form["username"]
         session['logged_in'] = True
+        session['userID'] = user_ref.where("username", "==", session['user']).get()[0].id
 
     else:
         flash('Wrong password')
@@ -63,6 +68,40 @@ def register():
 def reg_page():
     return render_template('register.html')
 
+@app.route('/new-character')
+def new_char():
+    new_sheet = sheet_ref.document()
+    template = sheet_ref.document(u'9JxW3AAKWMaUoSrWAHeI').get().to_dict()
+    data = template
+    data["sheetID"] = new_sheet.get().id
+    
+    return render_template('character-sheet.html', data=data)
+
+@app.route('/character-sheet', methods=['POST'])
+def char_sheet():
+    data = sheet_ref.document(request.form["sheet"]).get().to_dict()
+    data["sheetID"] = sheet_ref.document(request.form["sheet"]).get().id
+    return render_template('character-sheet.html', data=data)
+
+@app.route('/save-character', methods=['POST'])
+def char_save():
+    current_user_id = session['userID']
+
+    data = request.form.to_dict()
+    
+    data['userID'] = current_user_id
+
+    sheet_ID = data["sheetID"]
+    del data["sheetID"]
+    sheet_ref.document(sheet_ID).set(data)
+    data["sheetID"] = sheet_ID
+    return render_template('/character-sheet.html', data=data)
+
+@app.route('/delete-character', methods=['POST'])
+def delChar():
+    to_del = sheet_ref.document(request.form["sheet"]).delete()
+    return redirect('/')
+    
 @app.route('/test-session')
 def sessionData():
     if 'user' not in session:
