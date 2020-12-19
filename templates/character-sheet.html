@@ -13,35 +13,38 @@
                 </li>
             </ul>
         </div>
-        <div class="d-inline mb-0">
+        <div class="d-inline mb-0 ms-5 ps-5">
             <span class="navbar-brand h1">Dungeoneer's Flask</span>
         </div>
         <div class="d-inline mb-0 ms-5 pe-2">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav list-group list-group-horizontal">
                 <li class="nav-item">
+                    <button type="submit" class="btn btn-dark nav-link" form="char_form" formaction="/save-character" style="background: none; border: none;">Save Character</button>
+                </li>
+                <li class="nav-item ms-3">
                     <a class="nav-link" href="/logout">Logout</a>
                 </li>
             </ul>
         </div>
     </nav>
-    <form class="mt-3">
+    <form class="mt-3" id="char_form" method="POST">
         <div class="container">
             <h5 class="text-center">Personal</h5>
             <div class="row mb-5">
                 <div class="col">
                     <div class="form-floating border-bottom border-dark">
-                        <input type="text" class="form-control" id="char_name" maxlength="30" style="background: none;">
+                        <input type="text" class="form-control" name="char_name" id="char_name" maxlength="30" value="{{data.char_name}}" style="background: none;">
                         <label for="char_name">Name</label>
                     </div>
                 </div>
                 <div class="col">
                     <div class="row me-1">
                         <div class="col form-floating border-bottom border-dark">
-                            <input type="text" class="form-control" id="class_name" maxlength="15" style="background: none;">
+                            <input type="text" class="form-control" name="class_name" id="class_name" maxlength="15" value="{{data.class_name}}" style="background: none;">
                             <label for="class_name">Class</label>
                         </div>
                         <div class="col form-floating border-bottom border-dark">
-                            <input type="number" class="form-control" id="character_level" max=20 min=1 style="background: none;">
+                            <input type="number" class="form-control" name="character_level" id="character_level" max=20 min=1 value="{{data.character_level}}" style="background: none;">
                             <label for="character_level">Level</label>
                         </div>
                     </div>
@@ -49,11 +52,11 @@
                 <div class="col">
                     <div class="row">
                         <div class="col form-floating border-bottom border-dark">
-                            <input type="text" class="form-control" id="race_name" maxlength="15" style="background: none;">
+                            <input type="text" class="form-control" name="race_name" id="race_name" maxlength="15" value="{{data.race_name}}" style="background: none;">
                             <label for="race_name">Race</label>
                         </div>
                         <div class="col form-floating border-bottom border-dark">
-                            <input type="text" class="form-control" id="char_alignment" maxlength="2" style="background: none;">
+                            <input type="text" class="form-control" name="char_alignment" id="char_alignment" maxlength="2" value="{{data.char_alignment}}" style="background: none;">
                             <label for="char_alignment">Alignment</label>
                         </div>
                     </div>
@@ -62,11 +65,11 @@
             <div class="row border-bottom border-dark mt-5 pt-5"></div>
             <h5 class="text-center mt-2">Attributes</h5>
             <div class="row mt-5">
-                {% for val in ["STR", "DEX", "CON", "INT", "WIS", "CHA"] %}
+                {% for val in ["char_STR", "char_DEX", "char_CON", "char_INT", "char_WIS", "char_CHA"] %}
                 <div class="col">
                     <div class="form-floating border-bottom border-dark">
-                        <input type="number" class="form-control" id="char_{{val}}" min=1 max=30 style="background: none;">
-                        <label for="char_{{val}}">{{val}}</label>
+                        <input type="number" class="form-control" name="{{val}}" id="{{val}}" value="{{data[val]}}" min=1 max=30 style="background: none;">
+                        <label for="{{val}}">{{val[5:]}}</label>
                     </div>
                 </div>
                 {% endfor %}
@@ -76,32 +79,32 @@
             <div class="row mt-5">
                 <div class="col">
                     <div class="form-floating border-bottom border-dark">
-                        <input type="number" class="form-control" id="curr_hp" style="background: none;">
-                        <label for="armor_class">Current HP</label>
+                        <input type="number" class="form-control" name="curr_hp" id="curr_hp" value="{{data.curr_hp}}" style="background: none;">
+                        <label for="curr_hp">Current HP</label>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-floating border-bottom border-dark">
-                        <input type="number" class="form-control" id="max_hp" style="background: none;">
-                        <label for="armor_class">Maximum HP</label>
+                        <input type="number" class="form-control" name="max_hp" id="max_hp" value="{{data.max_hp}}" style="background: none;">
+                        <label for="max_hp">Maximum HP</label>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-floating border-bottom border-dark">
-                        <input type="number" class="form-control" id="armor_class" style="background: none;">
+                        <input type="number" class="form-control" name="armor_class" id="armor_class" value="{{data.armor_class}}" style="background: none;">
                         <label for="armor_class">Armor Class</label>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-floating border-bottom border-dark">
-                        <input type="number" class="form-control" id="speed" style="background: none;">
-                        <label for="armor_class">Speed</label>
+                        <input type="number" class="form-control" name="speed" id="speed" value="{{data.speed}}" style="background: none;">
+                        <label for="speed">Speed</label>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-floating border-bottom border-dark">
-                        <input type="number" class="form-control" id="initiative" style="background: none;">
-                        <label for="armor_class">Initiative</label>
+                        <input type="number" class="form-control" name="initiative" id="initiative" value="{{data.initiative}}" style="background: none;">
+                        <label for="initiative">Initiative</label>
                     </div>
                 </div>
             </div>
@@ -109,20 +112,20 @@
                 <p class="mt-4">Weapon</p>
                 <div class="col">
                     <div class="form-floating border-bottom border-dark">
-                        <input type="text" class="form-control" id="weapon_name" style="background: none;">
-                        <label for="armor_class">Name</label>
+                        <input type="text" class="form-control" name="weapon_name" id="weapon_name" value="{{data.weapon_name}}" style="background: none;">
+                        <label for="weapon_name">Name</label>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-floating border-bottom border-dark">
-                        <input type="text" class="form-control" id="atk_bonus" style="background: none;">
-                        <label for="armor_class">Attack Bonus</label>
+                        <input type="text" class="form-control" name="atk_bonus" id="atk_bonus" value="{{data.atk_bonus}}" style="background: none;">
+                        <label for="atk_bonus">Attack Bonus</label>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-floating border-bottom border-dark">
-                        <input type="text" class="form-control" id="Damage" style="background: none;">
-                        <label for="armor_class">Damage</label>
+                        <input type="text" class="form-control" name="damage" id="damage" value="{{data.damage}}" style="background: none;">
+                        <label for="damage">Damage</label>
                     </div>
                 </div>
                 <div class="col"></div>
@@ -131,14 +134,15 @@
             <div class="row border-bottom border-dark mt-5 pt-5"></div>
             <h5 class="text-center mt-2">Saves</h5>
             <div class="row mt-5">
-                {% for val in ["STR", "DEX", "CON", "INT", "WIS", "CHA"] %}
+                {% for val in ["char_STR_save", "char_DEX_save", "char_CON_save", "char_INT_save", "char_WIS_save", "char_CHA_save"] %}
                 <div class="col">
                     <div class="form-floating border-bottom border-dark">
-                        <input type="number" class="form-control" id="char_{{val}}" min=1 max=30 style="background: none;">
-                        <label for="char_{{val}}">{{val}}</label>
+                        <input type="number" class="form-control" name="{{val}}" id="{{val}}" min=0 max=30 value="{{data[val]}}" style="background: none;">
+                        <label for="{{val}}">{{val[5:8]}}</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="prof_{{val}}">
+                        <input class="form-check-input" type="checkbox" name="prof_{{val}}" id="prof_{{val}}" value={{True}}
+                        {% if data["prof_"+val] %}checked{% endif %}>
                         <label for="prof_{{val}}" style="opacity: 0.5; font-size: 0.75em;">Proficient?</label>
                     </div>
                 </div>
@@ -147,56 +151,60 @@
             <div class="row border-bottom border-dark mt-5 pt-5"></div>
             <h5 class="text-center mt-2">Skills</h5>
             <div class="row mt-5">
-                {% for val in ["Acrobatics", "Animal Handling", "Arcana", "Deception", "History"] %}
+                {% for val in ["char_Acrobatics", "char_Animal Handling", "char_Arcana", "char_Deception", "char_History"] %}
                 <div class="col">
                     <div class="form-floating border-bottom border-dark">
-                        <input type="number" class="form-control" id="char_{{val}}" style="background: none;">
-                        <label for="char_{{val}}">{{val}}</label>
+                        <input type="number" class="form-control" name="{{val}}" id="{{val}}" value="{{data[val]}}" style="background: none;">
+                        <label for="{{val}}">{{val[5:]}}</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="prof_{{val}}">
+                        <input class="form-check-input" type="checkbox" name="prof_{{val}}" id="prof_{{val}}" value={{True}}
+                        {% if data["prof_"+val] %}checked{% endif %}>
                         <label for="prof_{{val}}" style="opacity: 0.5; font-size: 0.75em;">Proficient?</label>
                     </div>
                 </div>
                 {% endfor %}
             </div>
             <div class="row mt-5">
-                {% for val in ["Insight", "Intimidation", "Investigation", "Medicine"] %}
+                {% for val in ["char_Insight", "char_Intimidation", "char_Investigation", "char_Medicine"] %}
                 <div class="col">
                     <div class="form-floating border-bottom border-dark">
-                        <input type="number" class="form-control" id="char_{{val}}" style="background: none;">
-                        <label for="char_{{val}}">{{val}}</label>
+                        <input type="number" class="form-control" name="{{val}}" id="{{val}}" value="{{data[val]}}" style="background: none;">
+                        <label for="{{val}}">{{val[5:]}}</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="prof_{{val}}">
+                        <input class="form-check-input" type="checkbox" name="prof_{{val}}" id="prof_{{val}}" value={{True}}
+                        {% if data["prof_"+val] %}checked{% endif %}>
                         <label for="prof_{{val}}" style="opacity: 0.5; font-size: 0.75em;">Proficient?</label>
                     </div>
                 </div>
                 {% endfor %}
             </div>
             <div class="row mt-5">
-                {% for val in ["Nature", "Perception", "Performance", "Persuasion"] %}
+                {% for val in ["char_Nature", "char_Perception", "char_Performance", "char_Persuasion"] %}
                 <div class="col">
                     <div class="form-floating border-bottom border-dark">
-                        <input type="number" class="form-control" id="char_{{val}}" style="background: none;">
-                        <label for="char_{{val}}">{{val}}</label>
+                        <input type="number" class="form-control" name="{{val}}" id="{{val}}" value="{{data[val]}}" style="background: none;">
+                        <label for="{{val}}">{{val[5:]}}</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="prof_{{val}}">
+                        <input class="form-check-input" type="checkbox" name="prof_{{val}}" id="prof_{{val}}" value={{True}}
+                        {% if data["prof_"+val] %}checked{% endif %}>
                         <label for="prof_{{val}}" style="opacity: 0.5; font-size: 0.75em;">Proficient?</label>
                     </div>
                 </div>
                 {% endfor %}
             </div>
             <div class="row mt-5">
-                {% for val in ["Religion", "Sleight of Hand", "Stealth", "Survival"] %}
+                {% for val in ["char_Religion", "char_Sleight of Hand", "char_Stealth", "char_Survival"] %}
                 <div class="col">
                     <div class="form-floating border-bottom border-dark">
-                        <input type="number" class="form-control" id="char_{{val}}" style="background: none;">
-                        <label for="char_{{val}}">{{val}}</label>
+                        <input type="number" class="form-control" name="{{val}}" id="{{val}}" value="{{data[val]}}" style="background: none;">
+                        <label for="{{val}}">{{val[5:]}}</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="prof_{{val}}">
+                        <input class="form-check-input" type="checkbox" name="prof_{{val}}" id="prof_{{val}}" value={{True}}
+                        {% if data["prof_"+val] %}checked{% endif %}>
                         <label for="prof_{{val}}" style="opacity: 0.5; font-size: 0.75em;">Proficient?</label>
                     </div>
                 </div>
@@ -204,6 +212,7 @@
             </div>
             <div class="row border-bottom border-dark mt-5 pt-5"></div>
         </div>
+        <input type="hidden" name="sheetID" id="sheet_ID" value="{{data.sheetID}}">
     </form>
 </body>
 </html>
