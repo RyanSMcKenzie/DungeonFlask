@@ -105,8 +105,8 @@ def delChar():
 @app.route('/test-session')
 def sessionData():
     if 'user' not in session:
-        return "No user"
-    return session['user']
+        return ("No user")
+    return (session['user'])
 
 port = int(os.environ.get('PORT', 8080))
 if __name__ == '__main__':
