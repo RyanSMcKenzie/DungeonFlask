@@ -79,8 +79,8 @@ def new_char():
 
 @app.route('/character-sheet', methods=['POST'])
 def char_sheet():
-    data = sheet_ref.document(request.form["sheet"]).get().to_dict()
-    data["sheetID"] = sheet_ref.document(request.form["sheet"]).get().id
+    data = sheet_ref.document(request.form["sheetID"]).get().to_dict()
+    data["sheetID"] = sheet_ref.document(request.form["sheetID"]).get().id
     return render_template('character-sheet.html', data=data)
 
 @app.route('/save-character', methods=['POST'])
@@ -90,7 +90,11 @@ def char_save():
     data = request.form.to_dict()
     
     data['userID'] = current_user_id
-
+    if 'equips' not in data:
+        data['equipment'] = ""
+    else:
+        data['equipment'] = data['equips']
+        del data['equips']
     sheet_ID = data["sheetID"]
     del data["sheetID"]
     sheet_ref.document(sheet_ID).set(data)
@@ -105,8 +109,8 @@ def delChar():
 @app.route('/test-session')
 def sessionData():
     if 'user' not in session:
-        return "No user"
-    return session['user']
+        return ("No user")
+    return (session['user'])
 
 port = int(os.environ.get('PORT', 8080))
 if __name__ == '__main__':

@@ -211,8 +211,56 @@
                 {% endfor %}
             </div>
             <div class="row border-bottom border-dark mt-5 pt-5"></div>
+            <h5 class="text-center mt-2">Equipment</h5>
+            <div class="row mt-5">
+                <div class="col">
+                    
+                </div>
+                <div class="col text-center">
+                    <ul class="list-group" id="equipment_items">
+                        {% for item in data.equipment.split('#$%')[:-1] %}
+                        <li class="list-group-item" id="{{item}}">
+                            {{item}}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <input type="text" id="newItem">
+                    {% if data.equipment|length < 2000 %}
+                    <button class="btn btn-dark" id="addButton">Add</button>
+                    {% endif %}
+                    <button class="btn btn-dark" id="removeButton">Remove</button>
+                </div>
+                <div class="col"></div>
+            </div>
+            <input type="hidden" name="equips" id="equips" maxlength="2000" value="{{data.equipment}}">
+            <div class="row border-bottom border-dark mt-5 pt-5"></div>
         </div>
         <input type="hidden" name="sheetID" id="sheet_ID" value="{{data.sheetID}}">
     </form>
+
+    <script>
+        
+document.getElementById("addButton").addEventListener("click", function(event){
+    
+    var equip = document.getElementById("equipment_items");
+    var newItem = document.getElementById("newItem");
+    var li = document.createElement("li");
+    li.setAttribute('id',newItem.value);
+    li.setAttribute('class', 'list-group-item')
+    li.textContent = newItem.value;
+    equip.appendChild(li);
+    document.getElementById("equips").value += (newItem.value + '#$%');
+    event.preventDefault();
+  });
+
+document.getElementById("removeButton").addEventListener("click", function(event){
+    event.preventDefault();
+    var ul = document.getElementById("equipment_items");
+    var newItem = document.getElementById("newItem");
+    var item = document.getElementById(newItem.value);
+    document.getElementById("equips").value = document.getElementById("equips").value.replace(newItem.value + '#$%', "");
+    ul.removeChild(item);
+  });
+    </script>
 </body>
 </html>
