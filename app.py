@@ -11,6 +11,7 @@ default_app = initialize_app(cred)
 db = firestore.client()
 user_ref = db.collection('users')
 sheet_ref = db.collection('Sheet')
+equip_ref = db.collection('sheet_equipment')
 
 @app.route('/')
 def mainPage():
@@ -79,8 +80,10 @@ def new_char():
 
 @app.route('/character-sheet', methods=['POST'])
 def char_sheet():
-    data = sheet_ref.document(request.form["sheet"]).get().to_dict()
-    data["sheetID"] = sheet_ref.document(request.form["sheet"]).get().id
+    data = sheet_ref.document(request.form["sheetID"]).get().to_dict()
+    data["sheetID"] = sheet_ref.document(request.form["sheetID"]).get().id
+    equipment = equip_ref.where("sheet_id", "==", data["sheetID"]).get()
+    data["equipment"] = [(item.get('name'), item.id) for item in equipment]
     return render_template('character-sheet.html', data=data)
 
 @app.route('/save-character', methods=['POST'])
