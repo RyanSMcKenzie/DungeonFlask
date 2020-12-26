@@ -7,10 +7,10 @@ Erasing and rewriting or simply reprinting character sheets is a hassle, so stor
 simplifies managing your characters.
 
 # Language/Frameworks
-Backend - Python3, Google Firestore
-Frontend - HTML, Jinja, Bootstrap
-Testing - TravisCI
-Deployment - Docker, Google Cloud Run
+1) Backend - Python3, Google Firestore
+2) Frontend - HTML, Jinja, Bootstrap
+3) Testing - TravisCI
+4) Deployment - Docker, Google Cloud Run
 
 # Features
 1) Create an account, login and logout freely
