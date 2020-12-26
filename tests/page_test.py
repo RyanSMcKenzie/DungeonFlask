@@ -45,6 +45,9 @@ def register(client, username, password, password2):
 def makeNewSheet(client):
     return client.post('/new-character')
 
+def log_req(client):
+    return client.get('/test-login-requirement')
+
 def saveChar(client):
     data = sheet_ref.document(u'9JxW3AAKWMaUoSrWAHeI').get().to_dict()
     data["sheetID"] = "testing_it_up"
@@ -87,3 +90,11 @@ def test_sheet(client):
         assert len(new_sheets) - len(sheets) == 0
         logout(client)
         assert sessionData(client).data.decode('utf-8') == 'No user'
+
+def test_login_req(client):
+    with app.test_request_context('/test-login-requirement'):
+        assert log_req(client).data.decode('utf-8') != "Logged in"
+        login(client, app.config["username"], app.config["password"])
+        assert log_req(client).data.decode('utf-8') == "Logged in"
+        logout(client)
+        assert log_req(client).data.decode('utf-8') != "Logged in"
