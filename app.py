@@ -1,6 +1,7 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort
 from flask import request, jsonify, url_for
 from firebase_admin import credentials, firestore, initialize_app
+from static.py.login_req import login_required
 import os
 
 # LINK TO LIVE: https://dungeon-flask-nvxsto2xda-uc.a.run.app
@@ -41,6 +42,7 @@ def login():
     return redirect('/')
 
 @app.route('/logout')
+@login_required
 def logout():
     session['logged_in'] = False
     session.clear()
@@ -48,6 +50,9 @@ def logout():
 
 @app.route('/register', methods=['POST'])
 def register():
+    if request.form.get("bots"):
+        return redirect('/')
+        
     if user_ref.where('username', '==', request.form["username"]).get():
         flash('Username already in use!')
         return redirect('/registration')
@@ -69,6 +74,7 @@ def reg_page():
     return render_template('register.html')
 
 @app.route('/new-character')
+@login_required
 def new_char():
     new_sheet = sheet_ref.document()
     template = sheet_ref.document(u'9JxW3AAKWMaUoSrWAHeI').get().to_dict()
@@ -78,12 +84,14 @@ def new_char():
     return render_template('character-sheet.html', data=data)
 
 @app.route('/character-sheet', methods=['POST'])
+@login_required
 def char_sheet():
     data = sheet_ref.document(request.form["sheetID"]).get().to_dict()
     data["sheetID"] = sheet_ref.document(request.form["sheetID"]).get().id
     return render_template('character-sheet.html', data=data)
 
 @app.route('/save-character', methods=['POST'])
+@login_required
 def char_save():
     current_user_id = session['userID']
 
@@ -102,6 +110,7 @@ def char_save():
     return render_template('/character-sheet.html', data=data)
 
 @app.route('/delete-character', methods=['POST'])
+@login_required
 def delChar():
     to_del = sheet_ref.document(request.form["sheet"]).delete()
     return redirect('/')
@@ -111,6 +120,11 @@ def sessionData():
     if 'user' not in session:
         return ("No user")
     return (session['user'])
+
+@app.route('/test-login-requirement')
+@login_required
+def testLogReq():
+    return "Logged in"
 
 port = int(os.environ.get('PORT', 8080))
 if __name__ == '__main__':

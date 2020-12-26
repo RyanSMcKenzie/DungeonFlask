@@ -24,6 +24,10 @@
                         <label for="password2" class="form-label">Verify Password:</label>
                         <input type="password" class="form-control border-dark" id="password2" name="password2">
                     </div>
+                    <div class="mb-3" id="sneaky">
+                        <label for="bots" class="form-label">Bots Type Here:</label>
+                        <input type="text" class="form-control border-dark" id="bots" name="bots">
+                    </div>
                     <div class="mb-3">
                         <input type="submit" value="Submit" class="border-dark">
                     </div>
@@ -42,3 +46,7 @@
             <div class="col"></div>
         </div>
     </div>
+    <script>
+        document.getElementById('sneaky').hidden = true;
+    </script>
+</body>
