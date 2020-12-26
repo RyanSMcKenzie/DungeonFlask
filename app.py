@@ -50,6 +50,9 @@ def logout():
 
 @app.route('/register', methods=['POST'])
 def register():
+    if request.form.get("bots"):
+        return redirect('/')
+        
     if user_ref.where('username', '==', request.form["username"]).get():
         flash('Username already in use!')
         return redirect('/registration')
