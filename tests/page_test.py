@@ -7,8 +7,8 @@ import os
 @pytest.fixture
 def client():
     app.secret_key = os.urandom(12)
-    app.config["username"] = "admin"
-    app.config["password"] = "adminpass"
+    app.config["username"] = "guest"
+    app.config["password"] = "guestpassword"
 
     return app.test_client()
 
@@ -31,7 +31,7 @@ def test_test(client):
     "password":app.config["password"]}):
         login(client, app.config["username"], app.config["password"])
         print(sessionData(client))
-        assert sessionData(client).data.decode('utf-8') == 'admin'
+        assert sessionData(client).data.decode('utf-8') == 'guest'
         logout(client)
         assert sessionData(client).data.decode('utf-8') == 'No user'
 
