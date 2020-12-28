@@ -15,8 +15,8 @@ simplifies managing your characters.
 # Features
 1) Create an account, login and logout freely
 2) Create and edit your character sheets - save your data on Google Firestore
-3) Add and remove equipment, change your stats, level, anything you need
---- Development ---  \
+3) Add and remove equipment, change your stats, level, anything you need<br/>
+--- Development ---<br/>
 4) User data held in sessions to ensure backend and frontend communicate properly
 5) Appropriate routes guarded by login requirement
 6) Tested and integrated with TravisCI
