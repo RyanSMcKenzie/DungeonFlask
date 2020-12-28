@@ -9,7 +9,7 @@ simplifies managing your characters.
 # Language/Frameworks
 1) Backend - Python3, Google Firestore
 2) Frontend - HTML, Jinja, Bootstrap
-3) Testing - TravisCI
+3) Testing - TravisCI, Pytest
 4) Deployment - Docker, Google Cloud Run
 
 # Features
