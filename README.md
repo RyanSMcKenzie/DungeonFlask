@@ -22,7 +22,3 @@ simplifies managing your characters.
 6) Tested and integrated with TravisCI
 7) Containerized with Docker
 8) Continuous deployment on Google Cloud Run
-
-# Try it out
-Want to try it for yourself? Head over to the app [here](https://dungeon-flask-nvxsto2xda-uc.a.run.app).
-Don't want to register? You can use username: 'guest' and password: 'guestpassword' to poke around.
